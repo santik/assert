@@ -1,6 +1,8 @@
 package assert
 
-import "errors"
+import (
+	"errors"
+)
 
 type Assert struct {
 }
@@ -35,6 +37,14 @@ func (assert Assert)false(value bool, message string) error  {
 	}
 
 	return assert.returnError(message, "Expected false")
+}
+
+func (assert Assert)intEquals(value1 int, value2 int, message string) error  {
+	if value1 == value2 {
+		return nil
+	}
+
+	return assert.returnError(message, "Expected equal values")
 }
 
 func (Assert)returnError(message string, defaultMessage string) error  {
