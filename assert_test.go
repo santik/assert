@@ -101,12 +101,62 @@ func TestIntEquals_WithEqualValues_ShouldNotReturnError(t *testing.T )  {
 	}
 }
 
-func TestIntEquals_WithNotValues_ShouldReturnError(t *testing.T )  {
+func TestIntEquals_WithNotEqualValues_ShouldReturnError(t *testing.T )  {
 	assert := Assert{}
 	value1 := 123
 	value2 := 1234
 
 	if assert.intEquals(value1, value2, "") == nil {
+		t.Error("Expected error")
+	}
+}
+
+func TestIntNotEquals_WithEqualValues_ShouldReturnError(t *testing.T )  {
+	assert := Assert{}
+	value1 := 123
+	value2 := 123
+
+	if assert.intNotEquals(value1, value2, "") == nil {
+		t.Error("Expected error")
+	}
+}
+
+func TestIntNotEquals_WithNotEqualValues_ShouldNotReturnError(t *testing.T )  {
+	assert := Assert{}
+	value1 := 123
+	value2 := 1234
+
+	if assert.intNotEquals(value1, value2, "") != nil {
+		t.Error("Expected no error")
+	}
+}
+
+func TestIntGreaterThan_WithGreaterThanValues_ShouldNotReturnError(t *testing.T )  {
+	assert := Assert{}
+	value1 := 124
+	value2 := 123
+
+	if assert.intGreaterThan(value1, value2, "") != nil {
+		t.Error("Expected no error")
+	}
+}
+
+func TestIntGreaterThan_WithNotGreaterThanValues_ShouldNotReturnError(t *testing.T )  {
+	assert := Assert{}
+	value1 := 123
+	value2 := 124
+
+	if assert.intGreaterThan(value1, value2, "") == nil {
+		t.Error("Expected error")
+	}
+}
+
+func TestIntGreaterThan_WithEqualValues_ShouldNotReturnError(t *testing.T )  {
+	assert := Assert{}
+	value1 := 123
+	value2 := 123
+
+	if assert.intGreaterThan(value1, value2, "") == nil {
 		t.Error("Expected error")
 	}
 }
